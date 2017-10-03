@@ -1,0 +1,59 @@
+unit uSistemaControl;
+
+interface
+
+uses uConexao, System.SysUtils, uEmpresaModel;
+
+type
+  TSistemaControl = Class
+
+  private
+    FConexao: TConexao;
+    FEmpresa: TEmpresaModel;
+
+    class var FInstance: TSistemaControl;
+  public
+    constructor create;
+    destructor destroy; override;
+
+    procedure carregarEmpresa(codigoEmpresa: Integer);
+
+    class function getIntance: TSistemaControl;
+
+    property conexao: TConexao read FConexao write FConexao;
+    property empresa: TEmpresaModel read FEmpresa write FEmpresa;
+  end;
+
+implementation
+
+{ TSistemaControl }
+
+procedure TSistemaControl.carregarEmpresa;
+begin
+  FEmpresa.carregar(FCodigoEmpresa);
+end;
+
+constructor TSistemaControl.create;
+begin
+  FConexao := TConexao.create;
+  FEmpresa := TEmpresaModel.create;
+end;
+
+destructor TSistemaControl.destroy;
+begin
+  FreeAndNil(FEmpresa);
+  FreeAndNil(FConexao);
+
+  inherited;
+end;
+
+class function TSistemaControl.getIntance: TSistemaControl;
+begin
+   if not Assigned(Self.FInstance) then begin
+      Self.FInstance := TSistemaControl.Create;
+   end;
+
+   result := Self.FInstance;
+end;
+
+end.

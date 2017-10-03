@@ -1,0 +1,53 @@
+unit uConexao;
+
+interface
+
+uses FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf,
+     FireDAC.Phys.Intf, FireDAC.Stan.Def,FireDAC.Stan.Pool, FireDAC.Stan.Async,
+     FireDAC.Phys, Data.DB, FireDAC.Comp.Client, FireDAC.Phys.MySQLDef, FireDAC.Phys.FB,
+     System.SysUtils, FireDAC.DApt, FireDAC.VCLUI.Wait;
+
+
+type
+  TConexao = Class
+  private
+    Fconn :  TFDConnection;
+
+    procedure configurarConexao;
+    function criarQuery: TFDQuery;
+  public
+    constructor create;
+    destructor destroy; override;
+  end;
+
+implementation
+
+{ TConexao }
+
+procedure TConexao.configurarConexao;
+begin
+
+end;
+
+constructor TConexao.create;
+begin
+  Fconn := TFDConnection.Create(nil);
+end;
+
+function TConexao.criarQuery: TFDQuery;
+var
+  vQuery : TFDQuery;
+begin
+  vQuery := TFDQuery.Create(nil);
+  vQuery.Connection := Fconn;
+
+  Result := vQuery;
+  end;
+
+destructor TConexao.destroy;
+begin
+  FreeAndNil(Fconn);
+  inherited;
+end;
+
+end.

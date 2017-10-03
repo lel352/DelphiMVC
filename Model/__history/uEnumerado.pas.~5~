@@ -1,0 +1,12 @@
+unit uEnumerado;
+
+interface
+
+type
+   TEnumerado = (tpIndefinido, tpIncluir, tpAlterar, tpExcluir)
+
+   end;
+
+implementation
+
+end.

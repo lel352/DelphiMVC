@@ -1,0 +1,58 @@
+unit uEmpresaModel;
+
+interface
+
+uses System.SysUtils;
+
+type
+   TEmpresaModel = Class
+  private
+    FCodigo: Integer;
+    FRazaoSocial: String;
+
+    procedure setCodigo(const Value: Integer);
+    procedure setrazaoSocial(const Value: String);
+  public
+    constructor create(aCodigo:Integer);
+    procedure carregar;
+
+    property codigo: Integer read FCodigo write setCodigo;
+    property razaoSocial: String read FRazaoSocial write setRazaoSocial;
+  end;
+implementation
+
+{ TEmpresa }
+
+uses uEmpresaDao;
+
+procedure TEmpresaModel.carregar;
+var
+  vEmpresaDao: TEmpresaDao;
+begin
+  vEmpresaDao := TEmpresaDao.Create;
+  try
+     
+  finally
+     FreeAndNil(vEmpresaDao);
+  end; 
+
+
+
+end;
+
+constructor TEmpresaModel.create(aCodigo: Integer);
+begin
+   FCodigo := aCodigo;
+end;
+
+procedure TEmpresaModel.setCodigo(const Value: Integer);
+begin
+   FCodigo := Value;
+end;
+
+procedure TEmpresaModel.setrazaoSocial(const Value: String);
+begin
+   FRazaoSocial := Value;
+end;
+
+end.

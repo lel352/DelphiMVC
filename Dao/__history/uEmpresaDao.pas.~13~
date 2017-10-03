@@ -1,0 +1,33 @@
+unit uEmpresaDao;
+
+interface
+
+uses uEmpresaModel,FireDAC.Comp.Client, uSistemaControl, System.SysUtils;
+
+Type
+   TEmpresaDao = Class
+      procedure carregar(AempresaModel: TEmpresaModel);
+   end;
+
+implementation
+
+{ TEmpresaDao }
+
+procedure TEmpresaDao.carregar(AempresaModel: TEmpresaModel);
+var
+  vQuery : TFDQuery;
+begin
+  vQuery := TSistemaControl.getIntance().conexao.criarQuery;
+  try
+    vQuery.Open('Selec codigo, razao_social from empresa ');
+    try
+
+    finally
+       vQuery.Close;
+    end;
+  finally
+     FreeAndNil(vQuery);
+  end;
+end;
+
+end.

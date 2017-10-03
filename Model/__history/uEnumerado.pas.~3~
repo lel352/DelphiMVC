@@ -1,0 +1,12 @@
+unit uEnumerado;
+
+interface
+
+type
+   TEnumerado = class
+
+   end;
+
+implementation
+
+end.

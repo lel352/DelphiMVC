@@ -1,0 +1,42 @@
+unit FPrincipalView;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TfrmPrincipal = class(TForm)
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses uSistemaControl;
+
+procedure TfrmPrincipal.FormCreate(Sender: TObject);
+begin
+  TSistemaControl.getIntance();
+  TSistemaControl.getIntance().carregarEmpresa(1);
+end;
+
+procedure TfrmPrincipal.FormDestroy(Sender: TObject);
+begin
+  TSistemaControl.destroy;
+end;
+
+initialization
+  ReportMemoryLeaksOnShutdown := True;
+
+end.
